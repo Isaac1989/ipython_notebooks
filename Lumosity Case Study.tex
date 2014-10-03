@@ -1,0 +1,1711 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Lumosity Case Study}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Part 1 Landing Page
+Assessment}\label{part-1-landing-page-assessment}
+
+Given the following data regarding 3 different landing pages, including
+the number of visitors, number of free trial registrations, and the
+number of purchased accounts associated with those landing pages:
+
+\begin{longtable}[c]{@{}lll@{}}
+\toprule\addlinespace
+Landing Page \# & \# of Visitors & \# of Registrations
+\\\addlinespace
+\midrule\endhead
+1 & 998832 & 331912
+\\\addlinespace
+2 & 1012285 & 349643
+\\\addlinespace
+3 & 995750 & 320432
+\\\addlinespace
+\bottomrule
+\end{longtable}
+
+the goal is to answer the following questions: 1. Are any differences
+between the landing pages meaningful? 2. What are the estimated size of
+the differences between groups in terms of - Registration rate -
+Purchase rate 3. Which landing page should be made the new default based
+on the results and why? 4. Describe and justify the analyses you use to
+come to these conclusions.
+
+    \subsection{Analysis motivation}\label{analysis-motivation}
+
+As far as I can tell, this is a pretty standard A/B/n testing problem.
+The idea is to determine if the conversion rates for two separate
+landing pages are statistically different from one another. Conversion
+rates are based on one of two goals: free trial registration or
+purchased account. To do so, I'll perform a number of one-versus-other
+statistical tests where I assume one of the landing pages as the null
+hypothesis/default page and perform statistical significance test
+against each of the others in turn. For this problem, I'll assume that
+Landing Page \#1 is the default page.
+
+    \subsection{Analysis description}\label{analysis-description}
+
+Under each goal, each of $n_{\text{page}}$ visitors to a page can either
+convert (e.g.~register for a free account), or not. Thus each visitor
+represents a binary trial, resulting in a binomial distribution with
+mean $np$, where $p$ is the probability of conversion. To compare
+landing pages we estimate estimate $p$ for each landing page using the
+sample mean $\hat p_{\text{page}} = c_{\text{page}} / n_{\text{page}}$,
+where $c_{\text{page}}$ is the number of conversions for a landing page.
+However, we also need to estimate the confidence interval for this
+estimate and, in addition, the statistical significance in differences
+between estimated conversion rates.
+
+Due to the large number of visitors for each of the pages, we can
+approximate the error distribution as a normal distribution, leading to
+the following definition of the confidence interval
+
+$\hat p \pm z \sqrt{\frac{1}{n} \hat p(1 - \hat p)} = z\text{SE}$,
+
+where $z$ is the critical value for a normal distribution at a
+significance level of $p\leq \alpha$, and $\text{SE}$ is the standard
+error for the normal approximation. Given that we are using the normal
+approximation for the error, then we can also use the standard error to
+determine statistically significant differences between two conversion
+rates by calculating the z-score:
+
+$\text{Z} = \frac{\hat p_0 - \hat p_{\text{test}}}{\sqrt{\text{SE}_0^2 + \text{SE}_{\text{test}}^2}}$
+
+The z-score is the number of standard deviations that need to exist
+between a Null and test hypotheses error distributions. From $\text{Z}$
+we can determine the p-value of rejecting the null hypothesis that two
+conversion rates are the same (i.e. $p<\alpha$) as the inverse
+cumulative distribution for the standard normal.
+
+All of these analyses are in the function $\text{ab_test}$ defined
+below,and I use the function to compare conversion rates for free trial
+registration and account purchases.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}70}]:} \PY{k+kn}{from} \PY{n+nn}{scipy.stats} \PY{k+kn}{import} \PY{n}{norm}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+         
+         \PY{k}{def} \PY{n+nf}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Helper function\PYZsq{}\PYZsq{}\PYZsq{}}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}\PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{200}\PY{p}{)}\PY{p}{;}
+             
+         \PY{c}{\PYZsh{} FIGURE COUNTER}
+         \PY{n}{fig\PYZus{}cnt} \PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{k}{def} \PY{n+nf}{ab\PYZus{}test}\PY{p}{(}\PY{n}{cond1}\PY{p}{,} \PY{n}{cond2}\PY{p}{,} \PY{n}{cond\PYZus{}labels}\PY{o}{=}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{A}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{B}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{conf}\PY{o}{=}\PY{l+m+mf}{0.99}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Run basic A/B test comparing two conditions \PYZlt{}cond1\PYZgt{} and \PYZlt{}cond2\PYZgt{}}
+         \PY{l+s+sd}{    \PYZlt{}conf\PYZgt{} defines the confidence of the conversion rate and is used}
+         \PY{l+s+sd}{    to determine a confidence interval.\PYZdq{}\PYZdq{}\PYZdq{}}      
+             
+             \PY{c}{\PYZsh{} NUMBER OF OBSERVATIONS}
+             \PY{n}{n1} \PY{o}{=} \PY{n}{cond1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{n2} \PY{o}{=} \PY{n}{cond2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             
+             \PY{c}{\PYZsh{} CONVERSION RATE}
+             \PY{n}{c1} \PY{o}{=} \PY{n}{cond1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{/}\PY{n}{n1}
+             \PY{n}{c2} \PY{o}{=} \PY{n}{cond2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{/}\PY{n}{n2}
+             
+             \PY{c}{\PYZsh{} PERCENT DIFFERENCE}
+             \PY{n}{prct\PYZus{}diff} \PY{o}{=} \PY{p}{(}\PY{n}{c2} \PY{o}{\PYZhy{}} \PY{n}{c1}\PY{p}{)}\PY{o}{/}\PY{n}{c1}
+             
+             \PY{c}{\PYZsh{} STANDARD ERROR CONFIDENCE INTERVALS}
+             \PY{n}{se1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{c1}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{c1}\PY{p}{)}\PY{o}{/}\PY{n}{n1}\PY{p}{)}
+             \PY{n}{se2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{c2}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{c2}\PY{p}{)}\PY{o}{/}\PY{n}{n2}\PY{p}{)}
+             
+             \PY{n}{critical\PYZus{}value} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{conf}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{2.}\PY{p}{)}
+             \PY{n}{ci1} \PY{o}{=} \PY{n}{se1}\PY{o}{*}\PY{n}{critical\PYZus{}value}
+             \PY{n}{ci2} \PY{o}{=} \PY{n}{se2}\PY{o}{*}\PY{n}{critical\PYZus{}value}
+             
+             \PY{c}{\PYZsh{} Z\PYZhy{}SCORE (WE TAKE ABS(Z) DUE TO SYMMETRY OF NORMAL TO SIMPLIFY CODE)}
+             \PY{n}{z\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{p}{(}\PY{n}{c2} \PY{o}{\PYZhy{}} \PY{n}{c1}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{se1}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{se2}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+             \PY{n}{p\PYZus{}val} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{n}{z\PYZus{}score}\PY{p}{)}
+             
+             \PY{c}{\PYZsh{} DISPLAY    }
+             \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Condition 1: conversion rate: }\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{ +/\PYZhy{} }\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s}{ (}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s}{ confidence interval)}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{c1}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{ci1}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{conf}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}
+             \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Condition 2: conversion rate: }\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{ +/\PYZhy{} }\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s}{ (}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s}{ confidence interval)}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{c2}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{ci2}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{conf}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}
+             \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Percent difference: }\PY{l+s+si}{\PYZpc{}1.4f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{prct\PYZus{}diff}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}    
+             \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{abs(Z\PYZhy{}score): }\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{ | p\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}1.9f}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{z\PYZus{}score}\PY{p}{,} \PY{n}{p\PYZus{}val}\PY{p}{)}
+             \PY{n}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{rc}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{font}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{size}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mf}{1.05}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{c1}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{c2}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,}\PY{l+m+mf}{0.9}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{white}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{yerr}\PY{o}{=}\PY{p}{[}\PY{n}{ci1}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,}\PY{n}{ci2}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,}\PY{n}{ecolor}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{red}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Conversion Rate (}\PY{l+s}{\PYZpc{}}\PY{l+s}{)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Conditions}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{p}{[}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mf}{1.5}\PY{p}{]}\PY{p}{,}\PY{n}{cond\PYZus{}labels}\PY{p}{)}    
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+             \PY{n}{ax\PYZus{}lims} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{[}\PY{n}{ax\PYZus{}lims}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{ax\PYZus{}lims}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{*}\PY{o}{.}\PY{l+m+mi}{15}\PY{p}{,}\PY{n}{ax\PYZus{}lims}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{]}\PY{p}{)}    
+\end{Verbatim}
+
+    \subsection{Running the analyses}\label{running-the-analyses}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}71}]:} \PY{c}{\PYZsh{} FIGURES FOR EACH LANDING PAGE}
+         \PY{n}{page1} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{998832.}\PY{p}{,} \PY{l+m+mf}{331912.}\PY{p}{,} \PY{l+m+mf}{18225.}\PY{p}{]}
+         \PY{n}{page2} \PY{o}{=}  \PY{p}{[}\PY{l+m+mf}{1012285.}\PY{p}{,} \PY{l+m+mf}{349643.}\PY{p}{,} \PY{l+m+mf}{18531.}\PY{p}{]}
+         \PY{n}{page3} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{995750.}\PY{p}{,} \PY{l+m+mf}{320432.}\PY{p}{,} \PY{l+m+mf}{18585.}\PY{p}{]}
+         
+         \PY{c}{\PYZsh{} COMPARING THE FREE TRIAL CONVERSION RATE FOR PAGES 1 AND 2}
+         \PY{n}{ab\PYZus{}test}\PY{p}{(}\PY{n}{page1}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{n}{page2}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{Landing Page 1}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Landing Page 2}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{fig\PYZus{}cnt}\PY{p}{)} \PY{o}{+} \PY{l+s}{\PYZsq{}}\PY{l+s}{: Comparing free trial conversions (Pages 1 and 2)}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Condition 1: conversion rate: 33.23 +/- 0.12\% (99.0\% confidence interval)
+Condition 2: conversion rate: 34.54 +/- 0.12\% (99.0\% confidence interval)
+Percent difference: 3.9421\%
+abs(Z-score): 19.63 | p-value: 0.000000000
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_5_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Figure 1 and associated std output display the results for comparing
+conversion rates on free trial registrations between Landing Page 1 and
+Landing Page 2. The conversion rates for page 1 and 3 are 33.23\% and
+34.54\%, respectively. The red error bars plot the confidence interval
+on those conversion rate estimates at 99\% confidence. We see that
+Landing Page 2 has a higher conversion rate for free trial registrations
+than Landing Page 1 (3.94\% higher). The confidence intervals are
+nowhere near overlapping, suggesting these two values converion rates
+are significantly different. This notion is further supported by the
+near-zero p-value.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}72}]:} \PY{c}{\PYZsh{} COMPARING THE FREE TRIAL CONVERSION RATE FOR PAGES 1 AND 3}
+         \PY{n}{ab\PYZus{}test}\PY{p}{(}\PY{n}{page1}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{n}{page3}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{Landing Page 1}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Landing Page 3}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{fig\PYZus{}cnt}\PY{p}{)} \PY{o}{+} \PY{l+s}{\PYZsq{}}\PY{l+s}{: Comparing free trial conversions (Pages 1 and 3)}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Condition 1: conversion rate: 33.23 +/- 0.12\% (99.0\% confidence interval)
+Condition 2: conversion rate: 32.18 +/- 0.12\% (99.0\% confidence interval)
+Percent difference: -3.1599\%
+abs(Z-score): 15.81 | p-value: 0.000000000
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_7_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Figure 2 and associated std output display the results for comparing
+conversion rates on free trial registrations between Landing Page 1 and
+Landing Page 3. We see that Landing Page 3 has a lower conversion rate
+for free trial registrations (32.18\%) than Landing Page 1 (3.16\%
+lower). The confidence intervals are again nowhere near overlapping,
+suggesting these two values converion rates are significantly different.
+Similarly, the near-zero p-value gives further evidence that Landing
+Page 3 has significanly lower conversion rate for free trial
+registrations.
+
+\textbf{Take-home}: For free trial registrations, Landing Page 2 has a
+higher conversion rate than Landing Page 1, while Landing Page 3 has has
+the smallest conversion rate.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}73}]:} \PY{c}{\PYZsh{} COMPARING THE PAID ACCOUNT CONVERSION RATE FOR PAGES 1 AND 2}
+         \PY{n}{ab\PYZus{}test}\PY{p}{(}\PY{n}{page1}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{n}{page2}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{Landing Page 1}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Landing Page 2}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{fig\PYZus{}cnt}\PY{p}{)} \PY{o}{+} \PY{l+s}{\PYZsq{}}\PY{l+s}{: Comparing free to paid conversions (Pages 1 and 2)}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Condition 1: conversion rate: 1.82 +/- 0.03\% (99.0\% confidence interval)
+Condition 2: conversion rate: 1.83 +/- 0.03\% (99.0\% confidence interval)
+Percent difference: 0.3277\%
+abs(Z-score): 0.32 | p-value: 0.375796380
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_9_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Figure 3 and associated std output display the results for comparing
+conversion rates for purchased accounts between Landing Page 1 and
+Landing Page 2. We see that Landing Page 2 has only slightly higher
+conversion rate (at 1.83\%) than Landing Page 1 (1.82\%), with a
+difference of 0.33 (of Landing Page 1's conversion rate). The convidence
+intervals show a large degree of overlap, suggesting these two values
+converion rates are not significantly different. This notion is further
+supported by the the large p-value (p=0.38).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}74}]:} \PY{c}{\PYZsh{} COMPARING THE PAID ACCOUNT CONVERSION RATE FOR PAGES 1 AND 3}
+         \PY{n}{ab\PYZus{}test}\PY{p}{(}\PY{n}{page1}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{n}{page3}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{Landing Page 1}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Landing Page 3}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{fig\PYZus{}cnt}\PY{p}{)} \PY{o}{+} \PY{l+s}{\PYZsq{}}\PY{l+s}{: Comparing free to paid conversions (Pages 1 and 3)}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Condition 1: conversion rate: 1.82 +/- 0.03\% (99.0\% confidence interval)
+Condition 2: conversion rate: 1.87 +/- 0.03\% (99.0\% confidence interval)
+Percent difference: 2.2909\%
+abs(Z-score): 2.19 | p-value: 0.014148921
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_11_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Figure 4 and associated std output display the results for comparing
+conversion rates for purchased accounts between Landing Page 1 and
+Landing Page 3. We see that Landing Page 3 has a higher conversion rate
+(1.87\%) than Landing Page 1, an increase of 2.30\% compared to Landing
+Page 1. The confidence intervals overlap somwhat, but not completely,
+suggesting these two values converion rates may or may not be
+significantly different. The p-value for the hypothesis test is p=0.014,
+indicating fairly strong statistical significance in the differences
+between the two conversion rates.
+
+\textbf{Take home}: For paid accounts, Landing Page 3 has a higher
+conversion rate than Landing Page 1, which has a neglibly different
+conversion rate than Landing Page 2. All of the results are summarized
+in the table below.
+
+    Hypothesis Testing $H_0 =$ Landing Page 1
+
+\begin{longtable}[c]{@{}lll@{}}
+\toprule\addlinespace
+Landing Page \# & \# of Registrations & \# of Purchases
+\\\addlinespace
+\midrule\endhead
+2 & Larger (+$3.94\%$ ), $p=0$ & \textasciitilde{}Same, $p=0.34$
+\\\addlinespace
+3 & Smaller (-$3.16\%$ ), $p=0$ & Larger (+$2.29\%$ ), $p=0.014$
+\\\addlinespace
+\bottomrule
+\end{longtable}
+
+\subsection{Which landing page should we
+use?}\label{which-landing-page-should-we-use}
+
+In terms of which Landing Page should be used, it depends on the goal of
+the landing page. If the goal is obtain additional user data that can be
+used to improve products, perhaps more free trials are desired. In this
+case Landing Page 2 would be the preferred page. However, generally the
+bottom line is to generate revenue, which does not come from free
+trials, but from paid accounts. In this case, Landing Page 3 should be
+adopted. Either way, Landing Page 1 should not be used.
+
+    \section{Part 2: Improving Training}\label{part-2-improving-training}
+
+The goal if this exercise is to brainstorm potential variables that
+could be introduced into the Lumosity training program that increase the
+probability of a user playing games that they find engaging and/or more
+effective.
+
+During the training system, Lumosity uses a pre-training check-in, where
+the user is asked to report their current mood and the amount of sleep
+they've had the previous night. This point offers the obvious
+opportunity to introduce new variables that may me helpful for
+determining cognitive and physiological states. For example one could
+ask the length of time since the user had eaten their last meal.
+However, from my experience with the product, there does not appear to
+be a post-training check-out (other than ranking games). Measuring
+cognitive factors after training would also be helpful for determining
+the degree to which a user was engaged or the effectiveness of the
+training session. As an example, it is reasonable to assert that games
+which make a user feel less confident about their performance (perhaps a
+game is frustrating or too difficult) are less engaging, or less
+effective. Therefore each user could be asked to report their
+post-training confidence level during a training check-out. The
+confidence level would be reported on a ordinal scale such as a
+5-interval Likert axis:
+
+\textbf{Not Confident \textless{} Somewhat Unconfident \textless{}
+Undecided \textless{} Somewhat confident \textless{} Very Confident },
+
+These confidence reports would then be associated with all games that
+were presented during the training session and then used to determine
+the probability that those games are presented to the user: more
+confidence-inducing games should be shown more often.
+
+In order to test the effectiveness of this type of confidence-based
+scheduling (CBS), we could run the following experiment. Users are
+randomly selected to be in one of two groups: the experimental group,
+who will experience CBS, and the control group that will experience
+standard game scheduling. Neither group will know that they are part of
+the experimental or control groups. Before the test period in which CBS
+is used by the experimental group, the performance metrics for users in
+each group are assessed and used as a baselines. After the test period
+in which CBS is used by the experimental group and standard scheduling
+is used for the control group, the performance metrics are then
+re-assessed. We can then run statistical tests to determine if there is
+a significant difference in the change in performance score from
+baseline between the experimental and control groups during the testing
+period. If the difference in performance for the experimental group is
+significantly larger than the for the control group, it would support
+adopting confidence-based scheduling into the training system.
+
+    \section{Part 3: Modeling Smartest Cities
+Data}\label{part-3-modeling-smartest-cities-data}
+
+In this exercise, the goal is to build a model that predicts median
+overall Brain Areas score for each city (Metro/Micro-politan areas) in
+Lumosity's Smartest Cities dataset from socioeconomic attributes sampled
+from the American Community Survey dataset. To do so, I'll perform a
+number of tasks including: loading, cleaning, and joining the two
+datasets, selecting attributes to include as features in the model,
+feature exploration and dimensionality reduction, model fitting, and
+model evaluation. For the data munging and joining, I'll use python's
+pandas package, and for model fitting, I'll use python's scikits-learn
+package. Below I perform some intiial data wrangling using pandas.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}75}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{import} \PY{n+nn}{os}
+         
+         \PY{c}{\PYZsh{} CONFIGURE PANDAS DISPLAY WIDTH}
+         \PY{n}{pd}\PY{o}{.}\PY{n}{options}\PY{o}{.}\PY{n}{display}\PY{o}{.}\PY{n}{max\PYZus{}colwidth} \PY{o}{=} \PY{l+m+mi}{100}
+         
+         \PY{c}{\PYZsh{}\PYZsh{} IMPORT DATA}
+         \PY{c}{\PYZsh{} SMARTEST CITIES SCORES}
+         \PY{n}{data\PYZus{}home} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{/home/dustin/jobs/lumosity/data\PYZus{}scientist\PYZus{}case}\PY{l+s}{\PYZdq{}}
+         \PY{n}{scores} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{data\PYZus{}home}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{scs\PYZus{}2013.csv}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{scores} \PY{o}{=} \PY{n}{scores}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{scores}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{9}\PY{p}{:}\PY{p}{]}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)} \PY{c}{\PYZsh{} REMOVE RANKING DATA}
+         
+         \PY{c}{\PYZsh{} AMERICAN COMMUNITY SURVEY DATA}
+         \PY{n}{survey} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{data\PYZus{}home}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{ACS\PYZus{}12\PYZus{}3YR\PYZus{}S0201\PYZus{}with\PYZus{}ann.csv}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{survey\PYZus{}meta} \PY{o}{=} \PY{n}{survey}\PY{o}{.}\PY{n}{ix}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{c}{\PYZsh{} COLUMN TRANSLATIONS IN FIRST ROW}
+         
+         \PY{c}{\PYZsh{} RENAME \PYZsq{}GEOID.ID2\PYZsq{} TO \PYZsq{}FIPS\PYZsq{} FOR JOIN}
+         \PY{n}{survey} \PY{o}{=} \PY{n}{survey}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{survey}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{survey} \PY{o}{=} \PY{n}{survey}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{GEO.id2}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+s}{\PYZsq{}}\PY{l+s}{fips}\PY{l+s}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{survey}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{fips}\PY{l+s}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{survey}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{fips}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} GET RID OF NANS IN GENERAL}
+         \PY{n}{survey} \PY{o}{=} \PY{n}{survey}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{how}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{any}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} SANITY CHECKS ON DATA SIZES}
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Size of scores dataset: }\PY{l+s}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{scores}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Size of survey dataset: }\PY{l+s}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{survey}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Number of overlapping observations: }\PY{l+s}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{intersect1d}\PY{p}{(}\PY{n}{scores}\PY{o}{.}\PY{n}{fips}\PY{p}{,}\PY{n}{survey}\PY{o}{.}\PY{n}{fips}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Size of scores dataset: (478, 9)
+Size of survey dataset: (102, 613)
+Number of overlapping observations: 99
+    \end{Verbatim}
+
+    \section{Exploring and selecting survey
+data}\label{exploring-and-selecting-survey-data}
+
+    From the output above, it appears that we have 99 training observation
+and over 600 attributes. This means that I'm going to need to trim down
+the attributes significantly and/or incorporate regularization during
+the model estimation. First, I'll see if I can remove or collapse any of
+the attributes.
+
+At a first glance, I see that half of the attributes in the survey data
+are margin of error fields. Outside of possibly being used for a
+weigthing factor in a reweighted regression, I can't think of an obvious
+way to use these MOE attributes. Thus, I'll drop them.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}76}]:} \PY{c}{\PYZsh{} FIRST, REMOVE MARGIN OF ERROR FIELDS}
+         \PY{k+kn}{import} \PY{n+nn}{re}
+         \PY{n}{cols} \PY{o}{=} \PY{n}{survey}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{values}
+         \PY{n}{moes} \PY{o}{=} \PY{p}{[}\PY{n}{c} \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{cols} \PY{k}{if} \PY{n}{re}\PY{o}{.}\PY{n}{match}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{MOE}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{n}{c}\PY{p}{)}\PY{p}{]}\PY{p}{;}
+         \PY{n}{survey} \PY{o}{=} \PY{n}{survey}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{moes}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{survey\PYZus{}meta} \PY{o}{=} \PY{n}{survey\PYZus{}meta}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{moes}\PY{p}{)}
+\end{Verbatim}
+
+    We'll also do some additional cleaning of the survey data: getting rid
+of *** and `(X)' fields (these will be replaced with median value along
+columns), converting strings to floating point values.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}77}]:} \PY{c}{\PYZsh{} REPLACE BAD ENTRIES WITH NANS}
+         \PY{n}{survey} \PY{o}{=} \PY{n}{survey}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{*****}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{NaN}\PY{p}{)}
+         \PY{n}{survey} \PY{o}{=} \PY{n}{survey}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{(X)}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{NaN}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}78}]:} \PY{c}{\PYZsh{} CONVERT NUMERICAL VALUES TO FLOAT}
+         \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{survey}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{:}\PY{p}{]}\PY{p}{:}
+             \PY{n}{survey}\PY{p}{[}\PY{n}{c}\PY{p}{]} \PY{o}{=} \PY{n}{survey}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}79}]:} \PY{c}{\PYZsh{} REPLACE NaN WITH MEDIAN COLUMN / FIELD}
+         \PY{n}{survey} \PY{o}{=} \PY{n}{survey}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{survey}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} SANITY CHECK TO SEE IF ANY NANS REMAIN}
+         \PY{n}{null\PYZus{}idx} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{n}{survey}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{nonzero}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{k}{print} \PY{n}{null\PYZus{}idx}
+         \PY{k}{print} \PY{n}{survey}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[]
+(102, 309)
+    \end{Verbatim}
+
+    Ah, that's a little better, now let's take a look a the remaining 300 or
+so attributes\ldots{}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}80}]:} \PY{c}{\PYZsh{} TAKE A LOOK AT THE REMAINING SURVEY VALUES}
+         \PY{c}{\PYZsh{}for i, c in enumerate(survey.columns):            }
+         \PY{c}{\PYZsh{}    print \PYZsq{}\PYZhy{}\PYZsq{}*50}
+         \PY{c}{\PYZsh{}    print \PYZsq{}Attribute: \PYZsq{} + survey\PYZus{}meta[i]}
+         \PY{c}{\PYZsh{}    print (survey[c].describe())}
+         \PY{c}{\PYZsh{}    print survey[c]   }
+\end{Verbatim}
+
+    Looking at the individual attribute values (above, commented out), it
+appears that the survey data table contains a combination of population
+counts (integers), percentages (floating points in 0-1), and income
+values (integers). Some of these attributes are repeated, indicating (I
+assume) measurements from multiple years in 2010-2012. Lets' take a
+closer look. First, let's see what the repeated values are all
+about\ldots{}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}81}]:} \PY{c}{\PYZsh{} IDENTIFY REPEATED FIELDS}
+         \PY{k+kn}{from} \PY{n+nn}{collections} \PY{k+kn}{import} \PY{n}{defaultdict}
+         
+         \PY{n}{duplicates} \PY{o}{=} \PY{n}{defaultdict}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{item} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{survey\PYZus{}meta}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{duplicates}\PY{p}{[}\PY{n}{item}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+             
+         \PY{c}{\PYZsh{} GET DUPLICATES AND THEIR INDICES}
+         \PY{n}{duplicates} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{k}\PY{p}{:}\PY{n}{v} \PY{k}{for} \PY{n}{k}\PY{p}{,}\PY{n}{v} \PY{o+ow}{in} \PY{n}{duplicates}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)} \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{v}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{l+m+mi}{1}\PY{p}{\PYZcb{}}    
+         \PY{n}{duplicates}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}81}]:} \{'Estimate; DISABILITY STATUS - With a disability': [116, 118, 120, 122],
+          'Estimate; EMPLOYMENT STATUS - In labor force': [159, 167],
+          'Estimate; EMPLOYMENT STATUS - In labor force - Civilian labor force': [160,
+           168],
+          'Estimate; EMPLOYMENT STATUS - In labor force - Civilian labor force - Employed': [161,
+           169],
+          'Estimate; EMPLOYMENT STATUS - In labor force - Civilian labor force - Unemployed': [162,
+           170],
+          'Estimate; EMPLOYMENT STATUS - In labor force - Civilian labor force - Unemployed - Percent of civilian labor force': [163,
+           171],
+          'Estimate; INCOME IN THE PAST 12 MONTHS (IN 2012 INFLATION-ADJUSTED DOLLARS) - Median income (dollars)': [233,
+           235,
+           237],
+          'Estimate; MARITAL STATUS - Divorced': [67, 73, 79],
+          'Estimate; MARITAL STATUS - Never married': [69, 75, 81],
+          'Estimate; MARITAL STATUS - Now married, except separated': [65, 71, 77],
+          'Estimate; MARITAL STATUS - Separated': [68, 74, 80],
+          'Estimate; MARITAL STATUS - Widowed': [66, 72, 78],
+          'Estimate; OCCUPATION - Management, business, science, and arts occupations': [181,
+           187,
+           193],
+          'Estimate; OCCUPATION - Natural resources, construction, and maintenance occupations': [184,
+           190,
+           196],
+          'Estimate; OCCUPATION - Production, transportation, and material moving occupations': [185,
+           191,
+           197],
+          'Estimate; OCCUPATION - Sales and office occupations': [183, 189, 195],
+          'Estimate; OCCUPATION - Service occupations': [182, 188, 194],
+          'Estimate; PLACE OF BIRTH, CITIZENSHIP STATUS AND YEAR OF ENTRY - Female': [133,
+           136,
+           139,
+           142],
+          'Estimate; PLACE OF BIRTH, CITIZENSHIP STATUS AND YEAR OF ENTRY - Male': [132,
+           135,
+           138,
+           141],
+          'Estimate; SCHOOL ENROLLMENT - Percent enrolled in college or graduate school': [90,
+           93],
+          'Estimate; SCHOOL ENROLLMENT - Percent enrolled in kindergarten to grade 12': [89,
+           92],
+          'Estimate; SEX AND AGE - 18 years and over': [23, 30],
+          'Estimate; SEX AND AGE - 65 years and over': [26, 39],
+          'Estimate; SEX AND AGE - Female': [12, 29, 32, 35, 38, 41],
+          'Estimate; SEX AND AGE - Male': [11, 28, 31, 34, 37, 40],
+          'Id': [0, 3]\}
+\end{Verbatim}
+        
+    Ok, my assumption wasn't completely correct. Some fields are repeated
+three times, while others are repeated twice, and others six times. It
+appears that there are sometimes subclasses of distinctions like, for
+example men and women based on the total population (EST\_VC12/13),
+under the age of 18 (EST\_VC33/34), and over the age of 65
+(EST\_VC49/50). Below I dive into this a little further\ldots{}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}82}]:} \PY{k}{def} \PY{n+nf}{display\PYZus{}duplicates\PYZus{}by\PYZus{}meta}\PY{p}{(}\PY{n}{meta}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Helper function\PYZsq{}\PYZsq{}\PYZsq{}}
+             \PY{k}{print} \PY{n}{meta}
+             \PY{k}{print} \PY{n}{survey}\PY{p}{[}\PY{n}{survey}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{n}{duplicates}\PY{p}{[}\PY{n}{meta}\PY{p}{]}\PY{p}{]}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}   
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}83}]:} \PY{n}{display\PYZus{}duplicates\PYZus{}by\PYZus{}meta}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Estimate; SEX AND AGE \PYZhy{} Female}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{display\PYZus{}duplicates\PYZus{}by\PYZus{}meta}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Estimate; SEX AND AGE \PYZhy{} Male}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Estimate; SEX AND AGE - Female
+    EST\_VC13  EST\_VC34  EST\_VC38  EST\_VC42  EST\_VC46  EST\_VC50
+1       51.6      49.2      52.2      50.5      51.3      57.4
+2       51.2      49.1      51.8      49.4      51.0      57.6
+3       50.8      49.0      51.4      49.3      51.2      55.8
+4       51.3      48.7      52.0      49.7      51.0      57.7
+5       51.3      49.0      52.2      50.4      52.0      57.4
+6       51.3      48.8      52.1      49.3      52.2      56.8
+7       49.9      48.9      50.2      49.1      49.8      55.9
+8       48.5      49.0      48.3      45.6      48.6      54.8
+9       51.8      49.1      52.7      50.6      52.1      58.0
+10      50.9      48.9      51.6      49.8      51.2      57.1
+Estimate; SEX AND AGE - Male
+    EST\_VC12  EST\_VC33  EST\_VC37  EST\_VC41  EST\_VC45  EST\_VC49
+1       48.4      50.8      47.8      49.5      48.7      42.6
+2       48.8      50.9      48.2      50.6      49.0      42.4
+3       49.2      51.0      48.6      50.7      48.8      44.2
+4       48.7      51.3      48.0      50.3      49.0      42.3
+5       48.7      51.0      47.8      49.6      48.0      42.6
+6       48.7      51.2      47.9      50.7      47.8      43.2
+7       50.1      51.1      49.8      50.9      50.2      44.1
+8       51.5      51.0      51.7      54.4      51.4      45.2
+9       48.2      50.9      47.3      49.4      47.9      42.0
+10      49.1      51.1      48.4      50.2      48.8      42.9
+    \end{Verbatim}
+
+    Here I've displayed each of the duplicate values for SEX AND AGE -
+Female/Male fields. Interestingly, you can see the effect that women
+live longer than men (compare EST\_VC50 to EST\_VC49). This information
+is redundant however, as you can get one set of data by subtracting the
+other from one.
+
+    There are also other redundant fields that are not associated with
+repeats. For example, the proportion of the population that do no finish
+high school is redundant in light of the proportion do finish high
+school (i.e.~1 minus the proportion that finish high school).
+
+Rather than trying to remove all of these redundant attributes by hand,
+I'll take a more automated approach. First I'll determine those
+attricbutes that are most correlated with the target value (median
+overall Brain Areas score), then select those sub attributes to be
+included in the feature set. Then, given these selected features, I'll
+remove redundancy by orthogonalization via statistical whitening (a la
+PCA).
+
+    \section{Feature selection}\label{feature-selection}
+
+Here I join on the two datasets (i.e.~Luminosity scores and Survey
+information) to line up the compatible observations and determine the
+median overall score (MOS) for these observations.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}84}]:} \PY{c}{\PYZsh{} JOIN TWO DATA SETS WHERE THEY OVERLAP (\PYZsq{}fips\PYZsq{} FIELD)}
+         \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{scores}\PY{p}{,}\PY{n}{survey}\PY{p}{)}
+         \PY{n}{all\PYZus{}brain\PYZus{}areas} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{Attention}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{Flexibility}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{Memory}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{Problem Solving}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{Speed}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{median\PYZus{}overall} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{all\PYZus{}brain\PYZus{}areas}\PY{p}{]}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{n}{survey} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{:}\PY{p}{]}\PY{p}{]}
+         \PY{n}{data} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{]}
+         \PY{n}{survey\PYZus{}meta} \PY{o}{=} \PY{n}{survey\PYZus{}meta}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}
+\end{Verbatim}
+
+    In order to determine relevant attributes to include in the model, I
+calculate the correlation between each attribute and the MOS.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}85}]:} \PY{c}{\PYZsh{} DETERMINE THE DEGREE OF CORRELATION }
+         \PY{c}{\PYZsh{} AMONGST ATTRIBUTES AND MEDIAN OVERALL SCORE}
+         \PY{n}{ccs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{col} \PY{o+ow}{in} \PY{n}{survey}\PY{o}{.}\PY{n}{columns}\PY{p}{:}
+             \PY{k}{try}\PY{p}{:}
+                 \PY{n}{ccs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{corrcoef}\PY{p}{(}\PY{n}{median\PYZus{}overall}\PY{p}{,}\PY{n}{survey}\PY{p}{[}\PY{n}{col}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+             \PY{k}{except}\PY{p}{:}
+                 \PY{n}{ccs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{NaN}\PY{p}{)}
+         \PY{n}{ccs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{ccs}\PY{p}{)}
+\end{Verbatim}
+
+    Due to the fact that correlation coefficients are random variables
+(because the survey attributes and MOS's are random variables), we must
+determine a statistically significant level of correlation. This
+significance level will be the threshold for which we select our
+features.
+
+It turns out that correlation coefficients are distributed according to
+a t-distribution with $N-2$ degrees of freedom, where $N$ is the length
+of the vector used to calculate the correlation (in our case the number
+of observations: $N=99$). Thus at a p-value $p<\alpha$, we can determine
+the significant level of correlation as
+
+$r_{\text{significant}} = \frac{t}{\sqrt{(N-2) + t^2}}$,
+
+where $t$ is the critical value for a student's t-distribution at $N-2$
+degrees of freedom at a given $\alpha$.
+
+Below, I plot the degree of correlation for each attribute, and the
+statistical significance cuttoff $\pm r_{\text{significant}}$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}86}]:} \PY{k+kn}{from} \PY{n+nn}{matplotlib.pylab} \PY{k+kn}{import} \PY{n}{find}
+         
+         \PY{c}{\PYZsh{} DETERMINE SIGNIFICANT CORRELATION COEFFICIENT}
+         \PY{k+kn}{from} \PY{n+nn}{scipy.stats} \PY{k+kn}{import} \PY{n}{t}
+         
+         \PY{c}{\PYZsh{} CORRCOEFF FOLLOWS T\PYZhy{}DISTRIBUTION}
+         \PY{c}{\PYZsh{} WITH N\PYZhy{}2 DEGREES OF FREEDOM}
+         \PY{n}{p\PYZus{}val} \PY{o}{=} \PY{l+m+mf}{0.001} \PY{c}{\PYZsh{} AMOUNT OF SIGNIFICANCE OF CORRELATION}
+         \PY{n}{n\PYZus{}obs} \PY{o}{=} \PY{l+m+mi}{99}
+         \PY{n}{df} \PY{o}{=} \PY{n}{n\PYZus{}obs} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}
+         \PY{n}{pval} \PY{o}{=} \PY{n}{p\PYZus{}val}\PY{o}{*}\PY{l+m+mi}{2} \PY{c}{\PYZsh{} TWO\PYZhy{}TAILED}
+         \PY{n}{tval} \PY{o}{=} \PY{n}{t}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{pval}\PY{p}{,}\PY{n}{df}\PY{p}{)} 
+         \PY{n}{sigcc} \PY{o}{=} \PY{n}{tval} \PY{o}{/} \PY{n}{sqrt}\PY{p}{(}\PY{n}{df} \PY{o}{+} \PY{n}{tval}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} CHOOSE FEATURES *ATLEAST* THIS CORRELATED}
+         \PY{n}{keep\PYZus{}idx} \PY{o}{=} \PY{n}{find}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{ccs}\PY{p}{)} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{sigcc}\PY{p}{)} 
+         
+         \PY{c}{\PYZsh{} PLOT DISTRIBUTION OF CORRELATIONS}
+         \PY{n}{xx} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{ccs}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{barh}\PY{p}{(}\PY{n}{xx}\PY{p}{,}\PY{n}{ccs}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ones\PYZus{}like}\PY{p}{(}\PY{n}{xx}\PY{p}{)}\PY{o}{*}\PY{n}{sigcc}\PY{p}{,}\PY{n}{xx}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ones\PYZus{}like}\PY{p}{(}\PY{n}{xx}\PY{p}{)}\PY{o}{*}\PY{o}{\PYZhy{}}\PY{n}{sigcc}\PY{p}{,}\PY{n}{xx}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{ccs}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,}\PY{n}{survey\PYZus{}meta}\PY{p}{[}\PY{n}{survey}\PY{o}{.}\PY{n}{columns}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: Correlation of survey features with overall score}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{signifigance threshold}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+         
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{significant correlation: }\PY{l+s}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{sigcc}\PY{p}{)}
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZsh{} of selected features: }\PY{l+s}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{keep\PYZus{}idx}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+significant correlation: 0.28680549201
+\# of selected features: 135
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_38_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Using this correlation criterion I've further reduced the number of
+parameters to around 130, another factor of nearly 2.3. Below I diplay
+the significantly-correlated features, sorted according to the degree of
+correlation:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}87}]:} \PY{c}{\PYZsh{} SORT CORRELATIONS FOR DISPLAY}
+         \PY{n}{sorted\PYZus{}idx} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{keep\PYZus{}idx}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{k}\PY{p}{:} \PY{n}{ccs}\PY{p}{[}\PY{n}{keep\PYZus{}idx}\PY{p}{]}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} PLOT SORTED CORRELATIONS AND ASSOCIATED FEATURES}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{barh}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sorted\PYZus{}idx}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{ccs}\PY{p}{[}\PY{n}{keep\PYZus{}idx}\PY{p}{[}\PY{n}{sorted\PYZus{}idx}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sorted\PYZus{}idx}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,}\PY{n}{survey\PYZus{}meta}\PY{p}{[}\PY{n}{survey}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{n}{keep\PYZus{}idx}\PY{p}{[}\PY{n}{sorted\PYZus{}idx}\PY{p}{]}\PY{p}{]}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: sorted significant correlations}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_40_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    In the Figure 5 above, we see the features that are most correlated and
+anticorrelated with MOS. In general the most postively correlated
+features are associated with higher education, employment status, health
+insurance coverage. Those variables that are most anti-correlated with
+MOS are associated with poverty rate, divorce or separated marriages,
+single-mother households, and lack of health insurance coverage.
+
+    \subsection{Feature extraction and
+preprocessing}\label{feature-extraction-and-preprocessing}
+
+Here, I extract the significantly-correlated features and transform the
+variables using the negative logarithm so that the strictly positive
+variables will be closer to normally-distributed. I also standardize
+each feature by centring it and rescaling it to have unit variance. This
+will will make the variables more ammenable to PCA and model fitting in
+later analyses.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}88}]:} \PY{c}{\PYZsh{} EXTRACT FEATURES (SORT THEM ACCORDING TO CORRELATION)}
+         \PY{n}{selected\PYZus{}features} \PY{o}{=} \PY{n}{survey}\PY{p}{[}\PY{n}{survey}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{n}{keep\PYZus{}idx}\PY{p}{[}\PY{n}{sorted\PYZus{}idx}\PY{p}{]}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} GAUSSIANIZE FEATURES}
+         \PY{n}{selected\PYZus{}features} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{log}\PY{p}{(}\PY{n}{selected\PYZus{}features}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} STANDARDIZE EACH VARIABLE}
+         \PY{n}{selected\PYZus{}features} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{n}{selected\PYZus{}features}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{selected\PYZus{}features} \PY{o}{/}\PY{o}{=} \PY{n}{selected\PYZus{}features}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} DISPLAY THE MOST CORRELATED / SELECTED FEATURES}
+         \PY{n}{feature\PYZus{}names} \PY{o}{=} \PY{n}{survey\PYZus{}meta}\PY{p}{[}\PY{n}{survey}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{n}{keep\PYZus{}idx}\PY{p}{[}\PY{n}{sorted\PYZus{}idx}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}89}]:} \PY{c}{\PYZsh{} DISPLAY SELECTED, TRANSFORMED FEATURES}
+         \PY{n}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{set\PYZus{}cmap}\PY{p}{(}\PY{n}{cm}\PY{o}{.}\PY{n}{seismic}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{selected\PYZus{}features}\PY{p}{,} \PY{n}{interpolation}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{none}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{tight}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: Selected and Transformed Feature Matrix}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_44_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Figure 7 shows the transformed features for the observations. Note that
+the observations are currently sorted by their ranking in the Smartest
+Cities dataset. We can see the clear progression that the first 70 or so
+features have strong loadings for higher-ranking cities. These features
+have strong negative loading for low-ranking cities. Conversely the
+remaining features have strong positive loadings for low-ranking cities,
+but negative loadings for hihg-ranking cities.
+
+As I mentioned earlier, there appears to be a lot of redundancy in these
+features. Let's check to see the degree of covariance between the
+selected features\ldots{}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}90}]:} \PY{c}{\PYZsh{} FEATURE COVARIANCE MATRIX}
+         \PY{n}{C} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{cov}\PY{p}{(}\PY{n}{selected\PYZus{}features}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+         \PY{n}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{set\PYZus{}cmap}\PY{p}{(}\PY{n}{cm}\PY{o}{.}\PY{n}{seismic}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{C}\PY{p}{,} \PY{n}{interpolation}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{none}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{image}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: Selected Feature}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{Covariance Matrix}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_46_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Indeed, there is substantial structure in the covariance matrix, as an
+orthogonal set of features would look much more like the identity. We'll
+try to account for this redundancy as well as further reduce the
+dimensionality of the features by performing Principal Components
+Analysis (PCA) on the selected features. We PCA in order to keep the
+number of features that accound for at least 95 \% of the variance in
+the feature matrix.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}91}]:} \PY{c}{\PYZsh{} RUN PCA AND WHITENING TO ORTHOGONALIZE SELECTED FEATURES}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn.decomposition} \PY{k+kn}{import} \PY{n}{PCA}
+         \PY{n}{prct\PYZus{}explained} \PY{o}{=} \PY{l+m+mf}{0.925}
+         \PY{n}{pca} \PY{o}{=} \PY{n}{PCA}\PY{p}{(}\PY{n}{n\PYZus{}components} \PY{o}{=} \PY{n}{prct\PYZus{}explained}\PY{p}{,} \PY{n}{whiten}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}\PY{p}{;}
+         \PY{n}{pca}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{selected\PYZus{}features}\PY{p}{)}\PY{p}{;}
+         \PY{n}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{arange}\PY{p}{(}\PY{n}{pca}\PY{o}{.}\PY{n}{n\PYZus{}components}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{pca}\PY{o}{.}\PY{n}{explained\PYZus{}variance\PYZus{}ratio\PYZus{}}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{on}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: }\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s}{ variance explained by }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{ PCs}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fig\PYZus{}cnt}\PY{p}{,} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{pca}\PY{o}{.}\PY{n}{explained\PYZus{}variance\PYZus{}ratio\PYZus{}}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{pca}\PY{o}{.}\PY{n}{n\PYZus{}components}\PY{p}{)}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_48_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    He we see that only 15 components are needed to explain a majority of
+the variance in the features. This greatly reduces the number of model
+parameters from the 135. Now, let's take a look at the features to
+ensure that they are indeed independent.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}92}]:} \PY{c}{\PYZsh{} WHITEN SELECTED FEATURES}
+         \PY{n}{w\PYZus{}features} \PY{o}{=} \PY{n}{pca}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{selected\PYZus{}features}\PY{p}{)} 
+         
+         \PY{c}{\PYZsh{} VISUALIZE WHITENED FEATURE STATISTICS...}
+         \PY{n}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{set\PYZus{}cmap}\PY{p}{(}\PY{n}{cm}\PY{o}{.}\PY{n}{seismic}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{w\PYZus{}features}\PY{p}{,} \PY{n}{interpolation}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{none}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{tight}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: Whitened Feature Matrix}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+         
+         \PY{n}{C} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{cov}\PY{p}{(}\PY{n}{w\PYZus{}features}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+         \PY{n}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{set\PYZus{}cmap}\PY{p}{(}\PY{n}{cm}\PY{o}{.}\PY{n}{seismic}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{C}\PY{p}{,} \PY{n}{interpolation}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{none}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{image}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: Whitened Feature}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{Covariance Matrix}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_50_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_50_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Great! It looks like we've removed all the redundant information, as the
+covarianc of the principal features is essentially an identity matrix.
+Now, let's take a look at what information these orthogonal dimensions
+capture about the input features. We'll do this by analyzing how the
+observed features project onto the first few principal components (PCs).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}93}]:} \PY{c}{\PYZsh{} VISUALIZE OBSERVATIONS IN PC SPACE}
+         \PY{n}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{set\PYZus{}cmap}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{cm}\PY{o}{.}\PY{n}{seismic}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{w\PYZus{}features}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{w\PYZus{}features}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{,}\PY{n}{median\PYZus{}overall}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{PC 1}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{PC 2}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure: }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: PC1 vs PC2 (color is median overall score)}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{n}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{w\PYZus{}features}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{w\PYZus{}features}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{,}\PY{n}{median\PYZus{}overall}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{PC 1}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{PC 3}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure: }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: PC1 vs PC3 (color is median overall score)}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{n}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{w\PYZus{}features}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{n}{w\PYZus{}features}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{,}\PY{n}{median\PYZus{}overall}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{PC 2}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{PC 3}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure: }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: PC2 vs PC3 (color is median overall score)}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_52_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_52_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_52_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Each plot above depicts how the feature vector for each observation
+projects into the space spanned by two of the first three PCs. Each dot
+represents an observation (city) and the color of each dot corresponding
+to the observation's MOS (i.e.~target variable).
+
+From from these visualizations we can see that the MOS varies smoothly
+along the first principal dimension: low projections onto PC1 correspond
+to high MOS values while high projections onto PC1 correspond with low
+MOS values. However, PC's 2 and 3 do not appear to be particularly
+correlated MOS, as can be seen by the random, overlapping organization
+of the colors in Figure 14. However, that is not to say that there are
+not other PCs that might better explain MOS.
+
+There is obviously structured dependence between MOS and (at least) the
+first principal dimensions of the selected features. What does this tell
+us about the factors that are important for predicting MOS? To address
+this question, I rank the selected features in terms of their projection
+onto the first PC.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}94}]:} \PY{c}{\PYZsh{} VISUALIZE REPRESENTATION ON FIRST FEW PCS IN TERMS OF INPUT FEATURES}
+         \PY{n}{n\PYZus{}obs}\PY{p}{,} \PY{n}{n\PYZus{}features} \PY{o}{=}  \PY{n}{selected\PYZus{}features}\PY{o}{.}\PY{n}{shape}
+         
+         \PY{c}{\PYZsh{}\PYZsh{} PROJECT FEATURES ONTO 1ST PC AND VISUALIZE...}
+         \PY{n}{pc1} \PY{o}{=} \PY{n}{selected\PYZus{}features}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{w\PYZus{}features}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{pc1\PYZus{}sort\PYZus{}idx} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{pc1}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{k}\PY{p}{:} \PY{n}{pc1}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{25}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{barh}\PY{p}{(}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{pc1\PYZus{}sort\PYZus{}idx}\PY{p}{)}\PY{p}{)}\PY{o}{+}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{,}\PY{n}{pc1}\PY{p}{[}\PY{n}{pc1\PYZus{}sort\PYZus{}idx}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{tight}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{n\PYZus{}features}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,}\PY{n}{feature\PYZus{}names}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{n}{pc1\PYZus{}sort\PYZus{}idx}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: PC1 (}\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s}{ variance explained)}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fig\PYZus{}cnt}\PY{p}{,}\PY{n}{pca}\PY{o}{.}\PY{n}{explained\PYZus{}variance\PYZus{}ratio\PYZus{}}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+         \PY{c}{\PYZsh{}print feature\PYZus{}names.values[pc1\PYZus{}sort\PYZus{}idx]}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_54_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{PC1 interpretation}\label{pc1-interpretation}
+
+Above, the projection of the features onto PC1 suggests that there is a
+postive relationships with MOS and education level, employment, income,
+having a relatively high-paying occupation (e.g.~sciences, arts, or
+business), and being single without family or children. Conversely,
+there appears to be a negative relationship between MOS and poverty
+rate, non-English speaking households, service occupations, and single
+parents.
+
+    \section{Model Fitting}\label{model-fitting}
+
+Now that we've done some initial exploratory analysis, let's fit some
+models to our features in order to predict MOS. In order to ensure that
+our model generalizes to new data, we would like to have a testing set
+of cities to asses model accuracy outside of the fitting procedure.
+However, given that we do not have any testing data, we will have to
+sample it from the training data. Therefore, I'll use cross-validation
+to estimate many models, then average their weights to get a final
+model.
+
+Also, given that we only have 99 observations, ensuring that problem is
+well constrained (i.e ensuring that the number of features we use is
+much smaller than the number of observations used to train the model)
+becomes tricky. Luckily, I was able to reduce the number of parameters
+down to 15 using the PCA. Otherwise, using some form of regularization
+would be necessary to constrain the ill-conditioned problem.
+
+    \subsection{Linear regression}\label{linear-regression}
+
+Here, I perform simple linear regression to predict MOS from the PC
+features, using 5-fold cross validation. I'll also include a LASSO
+penalty. The LASSO penalty prevents the model from overfitting to noise
+while also performing feature selection by encouranging a sparse
+distribution of model coefficients.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}95}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k+kn}{import} \PY{n}{linear\PYZus{}model}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k+kn}{import} \PY{n}{cross\PYZus{}validation}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn.utils} \PY{k+kn}{import} \PY{n}{shuffle}
+         
+         \PY{c}{\PYZsh{} REMOVE MEAN FROM TARGET}
+         \PY{n}{targets} \PY{o}{=} \PY{n}{median\PYZus{}overall} \PY{o}{\PYZhy{}} \PY{n}{median\PYZus{}overall}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} MAKE SURE TO SHUFFLE}
+         \PY{n}{features}\PY{p}{,} \PY{n}{targets} \PY{o}{=} \PY{n}{shuffle}\PY{p}{(}\PY{n}{w\PYZus{}features}\PY{p}{,} \PY{n}{targets}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} CORSS\PYZhy{}VALIDATE MODELS}
+         \PY{n}{k\PYZus{}folds} \PY{o}{=} \PY{l+m+mi}{5}
+         \PY{n}{kf} \PY{o}{=} \PY{n}{cross\PYZus{}validation}\PY{o}{.}\PY{n}{KFold}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{median\PYZus{}overall}\PY{p}{)}\PY{p}{,}\PY{n}{n\PYZus{}folds}\PY{o}{=}\PY{n}{k\PYZus{}folds}\PY{p}{)}
+         
+         \PY{n}{coeffs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{r2} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{cnt} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{k}{for} \PY{n}{train\PYZus{}idx}\PY{p}{,} \PY{n}{xval\PYZus{}idx} \PY{o+ow}{in} \PY{n}{kf}\PY{p}{:}
+             \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Fold }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{ / }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{cnt}\PY{p}{,}\PY{n}{k\PYZus{}folds}\PY{p}{)}
+             
+             \PY{c}{\PYZsh{} CURRENT SAMPLES}
+             \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}xval} \PY{o}{=} \PY{n}{features}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}\PY{p}{,} \PY{n}{features}\PY{p}{[}\PY{n}{xval\PYZus{}idx}\PY{p}{]}
+             \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}xval} \PY{o}{=} \PY{n}{targets}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}\PY{p}{,} \PY{n}{targets}\PY{p}{[}\PY{n}{xval\PYZus{}idx}\PY{p}{]}
+             
+             \PY{c}{\PYZsh{} INITIALIZE THE MODEL}
+             \PY{n}{regr} \PY{o}{=} \PY{n}{linear\PYZus{}model}\PY{o}{.}\PY{n}{Lasso}\PY{p}{(}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)} \PY{c}{\PYZsh{} LASSO }
+             \PY{c}{\PYZsh{}regr = linear\PYZus{}model.LinearRegression()    }
+             
+             \PY{c}{\PYZsh{} TRAIN}
+             \PY{n}{regr}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+             
+             \PY{c}{\PYZsh{} X\PYZhy{}VALIDATE}
+             \PY{n}{r2\PYZus{}tmp} \PY{o}{=} \PY{n}{regr}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}xval}\PY{p}{,} \PY{n}{y\PYZus{}xval}\PY{p}{)}
+             
+             \PY{c}{\PYZsh{} EXPLAINED VARIANCE }
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Variance explained: }\PY{l+s+si}{\PYZpc{}.2f}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{r2\PYZus{}tmp}\PY{p}{)}
+             \PY{n}{r2}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{r2\PYZus{}tmp}\PY{p}{)}
+             
+             \PY{c}{\PYZsh{} MODEL PARAMETERS}
+             \PY{n}{coeffs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{regr}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{)}    
+             \PY{n}{cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{n}{coeffs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{n}{coeffs}\PY{p}{)}
+         \PY{n}{avg\PYZus{}r2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{r2}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{o}{*}\PY{l+m+mi}{50}
+         \PY{k}{print} \PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Average explained variance: }\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{ (correlation: }\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{)}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{avg\PYZus{}r2}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{avg\PYZus{}r2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{n}{maxx} \PY{o}{=} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{coeffs}\PY{p}{)}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Fold 1 / 5
+Variance explained: 0.70
+Fold 2 / 5
+Variance explained: 0.77
+Fold 3 / 5
+Variance explained: 0.76
+Fold 4 / 5
+Variance explained: 0.78
+Fold 5 / 5
+Variance explained: 0.65
+--------------------------------------------------
+Average explained variance: 0.73 (correlation: 0.86)
+    \end{Verbatim}
+
+    We see above that by using a very simple linear model and a reduced set
+of features (i.e.~orthogonalized), we obtain accurate average
+predictions of held-out MOS data (on the order of correlation around
+0.85).
+
+Below we investigate the average model weights across the
+cross-validation folds. We also look at the model weight after inversing
+the PCA/whitening transform.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}96}]:} \PY{c}{\PYZsh{} VISUALIZE REGRESION MODEL WEIGHTS}
+         \PY{n}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{set\PYZus{}cmap}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{cm}\PY{o}{.}\PY{n}{seismic}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{[}\PY{n}{coeffs}\PY{p}{,} \PY{n}{coeffs}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{,}\PY{n}{interpolation}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{none}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{tight}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{n}{maxx} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{coeffs}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{clim}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{maxx}\PY{p}{,}\PY{n}{maxx}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{colorbar}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: Model Parameters}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{(average weights on bottom row)}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{c}{\PYZsh{} VISUALIZE WEIGHTS IN ORIGINAL FEATURE SPACE}
+         \PY{n}{unwhitened\PYZus{}coeffs} \PY{o}{=} \PY{n}{pca}\PY{o}{.}\PY{n}{inverse\PYZus{}transform}\PY{p}{(}\PY{n}{coeffs}\PY{p}{)}
+         \PY{n}{avg\PYZus{}coeffs} \PY{o}{=} \PY{n}{unwhitened\PYZus{}coeffs}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{maxx} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{avg\PYZus{}coeffs}\PY{p}{)}\PY{p}{)}
+         \PY{n}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{[}\PY{n}{unwhitened\PYZus{}coeffs}\PY{p}{,} \PY{n}{avg\PYZus{}coeffs}\PY{p}{]}\PY{p}{)}\PY{p}{,}\PY{n}{interpolation}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{none}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{tight}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{clim}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{maxx}\PY{p}{,}\PY{n}{maxx}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{colorbar}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: Unwhitened model parameters}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{(average on bottom row)}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_60_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_60_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Looking at the fit model weights the 1st PC gets strong negative
+weighting.This is reasonable given the inverse relationship between the
+first PC and MOS discussed earlier. We can also see that a majority of
+the coefficients are zero, this is due to the effect of the LASSO
+penalty.
+
+In order to analyze the model representation in terms of the ACS
+attributes, I've applied the inverse of the PC/whitening transform to
+the model weights to give the plot above. To see what the model is doing
+in terms of the actual ACS attributes, I visualize below the features
+ranked according to the average unwhitened weights:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}97}]:} \PY{c}{\PYZsh{} LOOK AT THE AVERAGE UNWHITENED MODEL}
+         \PY{n}{ac\PYZus{}sort\PYZus{}idx} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{avg\PYZus{}coeffs}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{k}\PY{p}{:} \PY{n}{avg\PYZus{}coeffs}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} VISUALIZE}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{barh}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{ac\PYZus{}sort\PYZus{}idx}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{avg\PYZus{}coeffs}\PY{p}{[}\PY{n}{ac\PYZus{}sort\PYZus{}idx}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{tight}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{n\PYZus{}features}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,}\PY{n}{feature\PYZus{}names}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{n}{ac\PYZus{}sort\PYZus{}idx}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: Average Model Weights}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_62_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Figure 18 displays the average model weights after being de-whitened and
+sorted; this procedure tells us the magnitude and direction that each of
+selected features is related to MOS. We see that large model weights are
+associated with features that are indicate highly-educated, employed,
+and insured populations. Low model weights are associated with features
+that are indicative of low education, poverty rate, separated marriages,
+and responsibility for grandchildren, amongst others.
+
+    \subsection{Gradient Boosted Trees
+Model}\label{gradient-boosted-trees-model}
+
+An alternateive approach to linear regression with a set number of
+features is to use an ensemble method which can simultaneosly select
+features during model fitting (and rank them). Below I train a Gradient
+Boosted Trees (GBT) model and display the resulting feature rankings.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}98}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k+kn}{import} \PY{n}{ensemble}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn.metrics} \PY{k+kn}{import} \PY{n}{r2\PYZus{}score}
+         
+         \PY{c}{\PYZsh{} REMOVE MEAN FROM TARGET}
+         \PY{n}{targets} \PY{o}{=} \PY{n}{median\PYZus{}overall} \PY{o}{\PYZhy{}} \PY{n}{median\PYZus{}overall}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} USE ALL SELECTED FEATURES (MAKE SURE TO SHUFFLE)}
+         \PY{n}{features}\PY{p}{,} \PY{n}{targets} \PY{o}{=} \PY{n}{shuffle}\PY{p}{(}\PY{n}{selected\PYZus{}features}\PY{p}{,} \PY{n}{targets}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} CORSS\PYZhy{}VALIDATE MODELS}
+         \PY{n}{k\PYZus{}folds} \PY{o}{=} \PY{l+m+mi}{5}
+         \PY{n}{kf} \PY{o}{=} \PY{n}{cross\PYZus{}validation}\PY{o}{.}\PY{n}{KFold}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{median\PYZus{}overall}\PY{p}{)}\PY{p}{,}\PY{n}{n\PYZus{}folds}\PY{o}{=}\PY{n}{k\PYZus{}folds}\PY{p}{)}
+         
+         \PY{n}{imp} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{r2} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{cnt} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{k}{for} \PY{n}{train\PYZus{}idx}\PY{p}{,} \PY{n}{xval\PYZus{}idx} \PY{o+ow}{in} \PY{n}{kf}\PY{p}{:}
+             \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Fold }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{ / }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{cnt}\PY{p}{,}\PY{n}{k\PYZus{}folds}\PY{p}{)}
+             
+             \PY{c}{\PYZsh{} CURRENT SAMPLES}
+             \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}xval} \PY{o}{=} \PY{n}{features}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}\PY{p}{,} \PY{n}{features}\PY{p}{[}\PY{n}{xval\PYZus{}idx}\PY{p}{]}
+             \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}xval} \PY{o}{=} \PY{n}{targets}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}\PY{p}{,} \PY{n}{targets}\PY{p}{[}\PY{n}{xval\PYZus{}idx}\PY{p}{]}
+             
+             \PY{c}{\PYZsh{} INITIALIZE THE MODEL}
+             \PY{n}{params} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{n\PYZus{}estimators}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{max\PYZus{}depth}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{min\PYZus{}samples\PYZus{}split}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{,}
+                   \PY{l+s}{\PYZsq{}}\PY{l+s}{learning\PYZus{}rate}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{loss}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{l+s}{\PYZsq{}}\PY{l+s}{ls}\PY{l+s}{\PYZsq{}}\PY{p}{\PYZcb{}}
+             \PY{n}{regr} \PY{o}{=} \PY{n}{ensemble}\PY{o}{.}\PY{n}{GradientBoostingRegressor}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{params}\PY{p}{)}
+         
+             \PY{c}{\PYZsh{} TRAIN}
+             \PY{n}{regr}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+             
+             \PY{c}{\PYZsh{} X\PYZhy{}VALIDATE}
+             \PY{n}{r2\PYZus{}tmp} \PY{o}{=} \PY{n}{r2\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}xval}\PY{p}{,} \PY{n}{regr}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}xval}\PY{p}{)}\PY{p}{)}
+             
+             \PY{c}{\PYZsh{} EXPLAINED VARIANCE }
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Variance explained: }\PY{l+s+si}{\PYZpc{}.2f}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{r2\PYZus{}tmp}\PY{p}{)}
+             \PY{n}{r2}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{r2\PYZus{}tmp}\PY{p}{)}
+             
+             \PY{c}{\PYZsh{} FEATURE IMPORTANCES}
+             \PY{n}{imp}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{regr}\PY{o}{.}\PY{n}{feature\PYZus{}importances\PYZus{}}\PY{p}{)}    
+             \PY{n}{cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{n}{importances} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{n}{imp}\PY{p}{)}
+         \PY{n}{avg\PYZus{}r2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{r2}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{o}{*}\PY{l+m+mi}{50}
+         \PY{k}{print} \PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Average explained variance: }\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{ (correlation: }\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{)}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{avg\PYZus{}r2}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{avg\PYZus{}r2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{n}{maxx} \PY{o}{=} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{importances}\PY{p}{)}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Fold 1 / 5
+Variance explained: 0.89
+Fold 2 / 5
+Variance explained: 0.65
+Fold 3 / 5
+Variance explained: 0.65
+Fold 4 / 5
+Variance explained: 0.19
+Fold 5 / 5
+Variance explained: 0.49
+--------------------------------------------------
+Average explained variance: 0.57 (correlation: 0.76)
+    \end{Verbatim}
+
+    Here we see that the model predicts fairly well, albeight not as well as
+the linear regression model. This is likely due to the fact that the
+model hyperparameters (e.g.~learning rate, tree depth, \#of weak
+learners) have not been fully optimized and that there are not enough
+observations to adequately select the useful features. Both of these
+problems can be alleviated by introducing more training data and using
+grid search to determine the optimal hyperparameters.
+
+Thought the GBT model doesn't work as well as the linear regression
+model, it can be used as a sanity check on the features that are
+important for predicting MOS. If the features identified by both
+modeling methods correspond, it provides further evidence for those
+features/attributes being important. Below we take a look at the feature
+importances in the GBT model (essentially the number of time a feature
+is included in the model).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}99}]:} \PY{c}{\PYZsh{} VISUALIZE FEATURE IMPORTANCES}
+         \PY{n}{avg\PYZus{}imps} \PY{o}{=} \PY{n}{importances}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n+nb+bp}{None}\PY{p}{]}
+         \PY{n}{ai\PYZus{}sort\PYZus{}idx} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{avg\PYZus{}imps}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{k}\PY{p}{:} \PY{n}{avg\PYZus{}imps}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{maxx} \PY{o}{=} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{avg\PYZus{}imps}\PY{p}{)}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} VISUALIZE}
+         \PY{n}{n\PYZus{}show} \PY{o}{=} \PY{l+m+mi}{30}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{15}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{barh}\PY{p}{(}\PY{n}{arange}\PY{p}{(}\PY{n}{n\PYZus{}show}\PY{p}{)}\PY{p}{,}\PY{n}{avg\PYZus{}imps}\PY{p}{[}\PY{n}{ai\PYZus{}sort\PYZus{}idx}\PY{p}{[}\PY{p}{:}\PY{n}{n\PYZus{}show}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{tight}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{arange}\PY{p}{(}\PY{n}{n\PYZus{}show}\PY{p}{)}\PY{o}{+}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{,}\PY{n}{feature\PYZus{}names}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{n}{ai\PYZus{}sort\PYZus{}idx}\PY{p}{[}\PY{p}{:}\PY{n}{n\PYZus{}show}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: Average Feature Importances}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_67_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We see that the GBT ranks a mix of features that vary both postively and
+negatively with MOS (given what we've gained the results from feature
+selection and the linear regression analyses). However, the overall
+findings support the linear regression findings. Namely MOS is predicted
+by education, employment status, and poverty rates.
+
+One thing that I find interesting is that seemingly unrelated attributes
+are predictive of MOS. For example having private health insurance is
+often identified as an important feature for prediction MOS. This is
+likely because the ability to obtain private health insurance is
+correlated with a number of middle-to-upper class attributes (such as
+income and profession) that are associated with obtaining high MOS.
+
+    \section{Predicting other Brain
+Areas}\label{predicting-other-brain-areas}
+
+I also wondered whether there was any distinction in how the individual
+brain areas included in the MOS (e.g.~Attention, Speed, Flexibility,
+etc.) were predicted using the PC-based linear regression analyses from
+above (I chose the linear regression only because it was the more
+accurate model out of those that I tried). Below we repeat the model
+fitting procedure, but with each individual brain areas scores as the
+target values.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}100}]:} \PY{c}{\PYZsh{} LOOP OVER INDIVIDUAL BRAIN AREAS}
+          \PY{n}{avg\PYZus{}accuracy} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{area} \PY{o+ow}{in} \PY{n}{all\PYZus{}brain\PYZus{}areas}\PY{p}{:}
+          
+              \PY{c}{\PYZsh{} REMOVE MEAN FROM TARGET}
+              \PY{n}{targets} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{area}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{data}\PY{p}{[}\PY{n}{area}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+          
+              \PY{c}{\PYZsh{} MAKE SURE TO SHUFFLE}
+              \PY{n}{features}\PY{p}{,} \PY{n}{targets} \PY{o}{=} \PY{n}{shuffle}\PY{p}{(}\PY{n}{w\PYZus{}features}\PY{p}{,} \PY{n}{targets}\PY{p}{)}
+          
+              \PY{c}{\PYZsh{} CROSS\PYZhy{}VALIDATE MODELS}
+              \PY{n}{k\PYZus{}folds} \PY{o}{=} \PY{l+m+mi}{5}
+              \PY{n}{kf} \PY{o}{=} \PY{n}{cross\PYZus{}validation}\PY{o}{.}\PY{n}{KFold}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{median\PYZus{}overall}\PY{p}{)}\PY{p}{,}\PY{n}{n\PYZus{}folds}\PY{o}{=}\PY{n}{k\PYZus{}folds}\PY{p}{)}
+          
+              \PY{n}{coeffs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+              \PY{n}{r2} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+              \PY{n}{cnt} \PY{o}{=} \PY{l+m+mi}{1}
+              \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZsq{}}\PY{o}{+}\PY{l+s}{\PYZsq{}}\PY{l+s}{*}\PY{l+s}{\PYZsq{}}\PY{o}{*}\PY{l+m+mi}{50}
+              \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Results for }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ models}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{area}
+              \PY{k}{for} \PY{n}{train\PYZus{}idx}\PY{p}{,} \PY{n}{xval\PYZus{}idx} \PY{o+ow}{in} \PY{n}{kf}\PY{p}{:}
+                  \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Fold }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{ / }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{cnt}\PY{p}{,}\PY{n}{k\PYZus{}folds}\PY{p}{)}
+          
+                  \PY{c}{\PYZsh{} CURRENT SAMPLES}
+                  \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}xval} \PY{o}{=} \PY{n}{features}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}\PY{p}{,} \PY{n}{features}\PY{p}{[}\PY{n}{xval\PYZus{}idx}\PY{p}{]}
+                  \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}xval} \PY{o}{=} \PY{n}{targets}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}\PY{p}{,} \PY{n}{targets}\PY{p}{[}\PY{n}{xval\PYZus{}idx}\PY{p}{]}
+          
+                  \PY{c}{\PYZsh{} INITIALIZE THE MODEL}
+                  \PY{n}{regr} \PY{o}{=} \PY{n}{linear\PYZus{}model}\PY{o}{.}\PY{n}{Lasso}\PY{p}{(}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}
+                  \PY{c}{\PYZsh{}regr = linear\PYZus{}model.LinearRegression()    }
+          
+                  \PY{c}{\PYZsh{} TRAIN}
+                  \PY{n}{regr}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+          
+                  \PY{c}{\PYZsh{} X\PYZhy{}VALIDATE}
+                  \PY{n}{r2\PYZus{}tmp} \PY{o}{=} \PY{n}{regr}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}xval}\PY{p}{,} \PY{n}{y\PYZus{}xval}\PY{p}{)}
+          
+                  \PY{c}{\PYZsh{} EXPLAINED VARIANCE}
+                  \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Variance explained: }\PY{l+s+si}{\PYZpc{}.2f}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{r2\PYZus{}tmp}\PY{p}{)}
+                  \PY{n}{r2}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{r2\PYZus{}tmp}\PY{p}{)}
+          
+                  \PY{c}{\PYZsh{} MODEL PARAMETERS}
+                  \PY{n}{coeffs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{regr}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{)}    
+                  \PY{n}{cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+          
+              \PY{n}{coeffs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{n}{coeffs}\PY{p}{)}
+              \PY{n}{avg\PYZus{}r2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{r2}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+              \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{o}{*}\PY{l+m+mi}{50}
+              \PY{k}{print} \PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Average explained variance: }\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{ (correlation: }\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{)}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{avg\PYZus{}r2}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{avg\PYZus{}r2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+              \PY{n}{avg\PYZus{}accuracy}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{avg\PYZus{}r2}\PY{p}{)}
+          
+          \PY{n}{new\PYZus{}figure}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+          \PY{n}{xx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{all\PYZus{}brain\PYZus{}areas}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{xx}\PY{p}{,} \PY{n}{avg\PYZus{}accuracy}\PY{p}{)}\PY{p}{;}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{xx}\PY{o}{+}\PY{l+m+mf}{0.5}\PY{p}{,}\PY{n}{all\PYZus{}brain\PYZus{}areas}\PY{p}{)}\PY{p}{;}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Explained Variance}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: Explained variance for various Brain Areas}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;} \PY{n}{fig\PYZus{}cnt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+**************************************************
+Results for Attention models
+Fold 1 / 5
+Variance explained: 0.50
+Fold 2 / 5
+Variance explained: 0.55
+Fold 3 / 5
+Variance explained: 0.62
+Fold 4 / 5
+Variance explained: 0.51
+Fold 5 / 5
+Variance explained: 0.42
+--------------------------------------------------
+Average explained variance: 0.52 (correlation: 0.72)
+
+**************************************************
+Results for Flexibility models
+Fold 1 / 5
+Variance explained: 0.84
+Fold 2 / 5
+Variance explained: 0.65
+Fold 3 / 5
+Variance explained: 0.73
+Fold 4 / 5
+Variance explained: 0.76
+Fold 5 / 5
+Variance explained: 0.62
+--------------------------------------------------
+Average explained variance: 0.72 (correlation: 0.85)
+
+**************************************************
+Results for Memory models
+Fold 1 / 5
+Variance explained: 0.58
+Fold 2 / 5
+Variance explained: 0.49
+Fold 3 / 5
+Variance explained: 0.42
+Fold 4 / 5
+Variance explained: 0.57
+Fold 5 / 5
+Variance explained: 0.43
+--------------------------------------------------
+Average explained variance: 0.50 (correlation: 0.71)
+
+**************************************************
+Results for Problem Solving models
+Fold 1 / 5
+Variance explained: 0.62
+Fold 2 / 5
+Variance explained: 0.72
+Fold 3 / 5
+Variance explained: 0.81
+Fold 4 / 5
+Variance explained: 0.50
+Fold 5 / 5
+Variance explained: 0.53
+--------------------------------------------------
+Average explained variance: 0.63 (correlation: 0.80)
+
+**************************************************
+Results for Speed models
+Fold 1 / 5
+Variance explained: 0.46
+Fold 2 / 5
+Variance explained: 0.67
+Fold 3 / 5
+Variance explained: 0.82
+Fold 4 / 5
+Variance explained: 0.78
+Fold 5 / 5
+Variance explained: 0.81
+--------------------------------------------------
+Average explained variance: 0.71 (correlation: 0.84)
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_70_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    It appears that Speed and Flexibility are consistently better predicted
+than other brain areas such as Memory or Attention. This could be due to
+any number of factors. Perhaps Memory and Attention responses are
+inherently more variable and thus have less signal-to-noise. Or perhaps
+Attention and Memory are less indicative of the median overall score for
+some observations. If this is the case, then choosing features based on
+the correlation with the MOS would provide sup-opotimal features for
+predicting Attention or Memory. Or perhaps the socioeconomic factors
+that are predictive of Flexibility and Speed are more stable than those
+that are predictive of Memory and Attention.
+
+In order to see if there are any discrpancies between the individual
+brain area scores and the median overall score, I plot each them below:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}101}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{all\PYZus{}brain\PYZus{}areas}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{;}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{median\PYZus{}overall}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}
+          \PY{n}{legend}\PY{p}{(}\PY{n}{all\PYZus{}brain\PYZus{}areas}\PY{p}{)}\PY{p}{;}
+          \PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Figure }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{: All Brain Areas scores for all observations (MOS in black)}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{fig\PYZus{}cnt}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Lumosity Case Study_files/Lumosity Case Study_72_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Taking a look at the traces of each predictor, it does appear that both
+Memory and Attention deviate from the MOS (in black) for lower-ranked
+cities. Given that this is around 10 percent of the observations, this
+could potentially lower model predictions. Obviously there is lots of
+room for future research! With that in mind, I've included a short list
+of possible ways to extend and improve the results of this case study.
+
+    \section{Improvements on analyses}\label{improvements-on-analyses}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Further explore the relationship between socioeconomic features and
+  individual brain areas scores
+\item
+  More in-depth work on hand-engineered features. Perhaps include
+  interaction terms.
+\item
+  Grid search over model parameters. For any reasonably-sized model,
+  this will require more than 100 training observations.
+\item
+  Use higher/lower p-value for selecting features. Perhaps using a
+  p-value of 0.001 for determining the correlation threshold was too
+  conservative, perhaps not conservative enough.
+\item
+  Cluster and subspace analyses. Can we find underlying sub-populations
+  of communities and/or individuals based on their input features?
+\item
+  Other models: perhaps nonlinear models (e.g.~neural networks) are more
+  fitting (pun intended) for these data?
+\item
+  More sophisticated model aggregation (other than mean of predictions)
+\end{itemize}
+
+    \section{Concerns regarding data
+collection}\label{concerns-regarding-data-collection}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \textbf{Geolocation}
+\item
+  My main concern with the geolocation is that only the \emph{last} IP
+  address associated with a Lumosity login was used. This would perhaps
+  be appropriate for users that only log in once, for multiple log-ins
+  it would be more appropriate to use the mode of the distribution. Ties
+  become weird here, however, as there is no way to interpolate. In that
+  case, one could default to the original strategy of using the last IP
+  address.
+\item
+  \textbf{Scoring and normalization}
+\item
+  My primary concern with the scoring is the choice of the
+  $\mathcal{N}(100,\sigma^2 = 15)$ as the comparison distribution (I'm
+  assuming there was a typo in the white page regarding the normal
+  distribution's variance, otherwise the variance would be 255). Where
+  do these model parameters come from? Perhaps using a nonparametric /
+  emprical distribution would be more appropriate.
+\end{itemize}
+
+    \section{Additional data}\label{additional-data}
+
+There are a number of axes that are not included in the ACS data that
+might also be useful for predicting MOS. For example variables like -
+Political affilation - Religious tendencies - The number of hours spent
+watching television or on the internet
+
+are likely correlated with the way people absorb and synthesize
+information, and thus could be predictive of overall mental performance
+in a region.
+
+In addition, indicators of overall health are also likely linked to
+mental performance in the region. Attributes that would be indicative of
+overall health include (but are obviously not limited to): - diabetes,
+heart disease, suicide, and infant mortality rates - food consumption
+trends (i.e. ``do you buy organic or buy McDonalds'') - the number of
+nearby parks and recreational areas.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
